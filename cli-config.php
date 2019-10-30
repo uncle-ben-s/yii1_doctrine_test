@@ -1,10 +1,10 @@
 <?php
 require 'vendor/autoload.php';
 
+use app\components\EMFactory;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Symfony\Component\Console\Helper\HelperSet;
-use app\config\EMFactory;
 
 $entityManager = EMFactory::getInstance()->getEntityManager();
 

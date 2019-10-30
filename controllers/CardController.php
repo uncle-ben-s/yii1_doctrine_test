@@ -48,7 +48,8 @@ class CardController extends Controller
             array('deny',  // deny all users
                   'users'=>array('*'),
                   'deniedCallback' => function () {
-                      \Yii::app()->user->setFlash('error', 'Role "'. \Yii::app()->user->role .'" access deny to ' . \Yii::app()->urlManager->parseUrl(\Yii::app()->request));
+                      $role = !empty(\Yii::app()->user->role)? \Yii::app()->user->role : 'guest';
+                      \Yii::app()->user->setFlash('error', 'Role "'. $role .'" access deny to ' . \Yii::app()->urlManager->parseUrl(\Yii::app()->request));
                       $this->redirect(['site/index']);
                   }
             ),
