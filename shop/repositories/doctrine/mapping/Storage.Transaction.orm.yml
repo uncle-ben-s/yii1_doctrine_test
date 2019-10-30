@@ -1,0 +1,25 @@
+shop\entities\Storage\Transaction:
+  type: entity
+  table: doctrine_transactions
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    amount:
+      type: integer
+      nullable: FALSE
+    createDate:
+      column: create_date
+      type: datetime
+  embedded:
+    type:
+      class: shop\entities\Storage\Transaction\Type
+  manyToOne:
+    card:
+      targetEntity: shop\entities\Card\Card
+      inversedBy: storage
+      joinColumn:
+        name: card_id
+        referencedColumnName: id

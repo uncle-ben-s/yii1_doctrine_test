@@ -1,0 +1,14 @@
+shop\entities\User\Role:
+  type: entity
+  table: doctrine_role
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 10
+      nullable: FALSE
+      unique: TRUE

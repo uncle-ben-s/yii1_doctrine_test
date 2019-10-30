@@ -1,0 +1,20 @@
+shop\entities\Card\Price:
+  type: entity
+  table: doctrine_prices
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    value:
+      type: integer
+      nullable: FALSE
+  manyToOne:
+    currency:
+      targetEntity: Currency
+      cascade: ["persist", "merge"]
+      joinColumn:
+        name: currency_id
+        referencedColumnName: id
+

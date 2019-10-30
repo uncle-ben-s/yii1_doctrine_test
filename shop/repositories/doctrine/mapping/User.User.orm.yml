@@ -1,0 +1,30 @@
+shop\entities\User\User:
+  type: entity
+  table: doctrine_user
+#  repositoryClass: doctrine\repo\UserRepository
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    email:
+      type: string
+      length: 80
+      nullable: FALSE
+      unique: TRUE
+  embedded:
+    pass:
+      class: Password
+  manyToOne:
+    role:
+      targetEntity: Role
+      cascade: ["persist", "merge"]
+      joinColumn:
+        name: role_id
+        referencedColumnName: id
+  oneToMany:
+    histories:
+      targetEntity: \shop\entities\History\History
+      mappedBy: user
+      cascade: ["persist"]

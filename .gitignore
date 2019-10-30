@@ -1,0 +1,12 @@
+# phpstorm project files
+.idea
+
+# composer vendor dir
+/vendor
+
+mysql
+
+console/proxies
+web/assets
+runtime
+temp

@@ -1,0 +1,64 @@
+parameters:
+  admin_email: manager@example.com
+
+services:
+  # ... same code as before
+#  _defaults:
+#    autowire: true
+#    autoconfigure: true
+#    public: false
+
+  shop\:
+    resource: '../shop/*'
+  services\:
+    resource: '../services/*'
+
+  entity.manager:
+    class: Doctrine\ORM\EntityManager
+    factory: ['app\components\EntityManagerCreator', 'createEntityManager']
+
+  services\Dispatchers\CardEventDispatcher: ~
+
+  shop\Dispatchers\EventDispatcher: '@services\Dispatchers\CardEventDispatcher'
+
+
+  # explicitly configure the service
+  shop\Services\Card\Currency:
+    arguments:
+      - '@entity.manager'
+
+  shop\Services\History\History:
+    arguments:
+      - '@entity.manager'
+      - '@shop\Services\Card\Card'
+      - '@shop\Services\History\HistoryType'
+      - '@shop\Services\User\User'
+
+  shop\Services\History\HistoryType:
+    arguments:
+      - '@entity.manager'
+
+  shop\Services\User\User:
+    arguments:
+      - '@entity.manager'
+
+  shop\Services\User\Role:
+    arguments:
+      - '@entity.manager'
+
+  shop\Services\Filter\FilterType:
+    arguments:
+      - '@entity.manager'
+
+  shop\Services\Filter\Filter:
+    arguments:
+      - '@entity.manager'
+      - '@shop\Services\Filter\FilterType'
+
+  shop\Services\Card\Card:
+    arguments:
+      - '@entity.manager'
+      - '@shop\Dispatchers\EventDispatcher'
+      - '@shop\Services\Filter\Filter'
+
+

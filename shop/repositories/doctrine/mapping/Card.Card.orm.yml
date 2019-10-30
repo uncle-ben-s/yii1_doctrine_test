@@ -1,0 +1,49 @@
+shop\entities\Card\Card:
+  type: entity
+  table: doctrine_cards
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    createDate:
+      column: create_date
+      type: datetime
+    name:
+      type: string
+      length: 255
+      nullable: FALSE
+    status:
+      type: card_status
+      length: 6
+      nullable: FALSE
+      options:
+        default: 'close'
+  oneToOne:
+    price:
+      targetEntity: Price
+      cascade: ["persist", "merge"]
+      orphanRemoval: true
+  manyToMany:
+    filters:
+      targetEntity: \shop\entities\Filter\Filter
+      cascade: ["persist", "merge"]
+      joinTable:
+        name: doctrine_cards_filters
+        joinColumns:
+          card_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          filter_id:
+            referencedColumnName: id
+  oneToMany:
+    storage:
+      targetEntity: \shop\entities\Storage\Transaction
+      mappedBy: card
+      cascade: ["persist"]
+    histories:
+      targetEntity: \shop\entities\History\History
+      mappedBy: card
+      cascade: ["persist"]
+

@@ -1,0 +1,7 @@
+shop\entities\Storage\Transaction\Type:
+  type: embeddable
+  fields:
+    name:
+      type: string
+      length: 10
+      nullable: FALSE

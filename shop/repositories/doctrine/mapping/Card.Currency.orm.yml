@@ -1,0 +1,18 @@
+shop\entities\Card\Currency:
+  type: entity
+  table: doctrine_currency
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 150
+      nullable: FALSE
+    code:
+      type: string
+      length: 3
+      nullable: FALSE
+

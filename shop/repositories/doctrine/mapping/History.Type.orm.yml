@@ -1,0 +1,19 @@
+shop\entities\History\Type:
+  type: entity
+  table: doctrine_history_types
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 50
+      nullable: FALSE
+  oneToMany:
+    histories:
+      targetEntity: \shop\entities\History\History
+      mappedBy: type
+#      orderBy: { "id": "ASC" }
+      cascade: ["persist", "merge"]

@@ -1,0 +1,21 @@
+shop\entities\Filter\Filter:
+  type: entity
+  table: doctrine_filters
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    value:
+      type: string
+      length: 150
+      nullable: FALSE
+  uniqueConstraints:
+    filter_type_filter_idx:
+      columns: [ type_id, value ]
+  manyToOne:
+    type:
+      targetEntity: FilterType
+      cascade: ["persist", "merge"]
+      inversedBy: filters

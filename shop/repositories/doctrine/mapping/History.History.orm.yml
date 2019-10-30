@@ -1,0 +1,28 @@
+shop\entities\History\History:
+  type: entity
+  table: doctrine_histories
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    createDate:
+      column: create_date
+      type: datetime
+    info:
+      type: string
+      length: 255
+  manyToOne:
+    type:
+      targetEntity: \shop\entities\History\Type
+      cascade: ["persist", "merge"]
+      inversedBy: histories
+    card:
+      targetEntity: \shop\entities\Card\Card
+      cascade: ["persist", "merge"]
+      inversedBy: histories
+    user:
+      targetEntity: \shop\entities\User\User
+      cascade: ["persist", "merge"]
+      inversedBy: histories
