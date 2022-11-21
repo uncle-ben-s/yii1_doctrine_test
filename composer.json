@@ -1,7 +1,7 @@
 {
 	"minimum-stability": "stable",
 	"require": {  
-		"yiisoft/yii": "1.1.21",
+		"yiisoft/yii": "1.1.27",
 		"doctrine/orm": "2.5",
 		"php": "5.6.37",
 		"symfony/yaml": "~3",
